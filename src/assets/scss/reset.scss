@@ -1,0 +1,193 @@
+@charset "UTF-8";
+/*css 初始化 */
+* {
+    box-sizing: border-box;
+}
+
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img {
+    margin: 0;
+    padding: 0;
+    /* background-color: red; */
+}
+
+fieldset, img, input, button {
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline-style: none;
+}
+
+/*去掉input等聚焦时的蓝色边框*/
+ul, ol {
+    list-style: none;
+}
+
+input {
+    padding-top: 0;
+    padding-bottom: 0;
+    font-family: "Microsoft YaHei", "宋体", serif;
+}
+
+select, input {
+    vertical-align: middle;
+}
+
+select, input, textarea {
+    margin: 0;
+}
+
+textarea {
+    resize: none;
+}
+
+/*防止拖动*/
+img {
+    border: 0;
+    vertical-align: middle;
+}
+
+button {
+    cursor: pointer;
+}
+
+/*  去掉图片低测默认的3像素空白缝隙，或者用display：block也可以*/
+table {
+    border-collapse: collapse;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+/*bootstrap 清除padding*/
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl, .col-xl-auto {
+    padding: 0 !important;
+}
+
+html {
+    background-color: #f4f4f4;
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    font-family: 'Microsoft YaHei', 'Arial', 'Verdana';
+    color: #1a1a1a;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    font-size: 14px;
+    margin: 0px !important;
+}
+
+.clearfix:before, .clearfix:after { /*清除浮动*/
+    content: '';
+    height: 0;
+    line-height: 0;
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1; /*IE/7/6*/
+}
+
+a {
+    text-decoration: none !important;
+}
+
+/*a:hover{color:#C81623;}*/
+s, i, em {
+    font-style: normal;
+    text-decoration: none;
+}
+
+.col-red {
+    color: #C81623 !important;
+}
+
+.card {
+    box-shadow: 0 0 15px #f6f6f6;
+    border-radius: 3px;
+}
+
+.divsion {
+    padding: 60px;
+}
+
+.text_center {
+    text-align: center
+}
+
+.text_left {
+    text-align: left;
+}
+
+html, body {
+    position: relative
+}
+
+.el-container {
+    height: 100%;
+}
+
+/* register model's footer skip commoncitytStyle*/
+.help {
+    text-align: right;
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+.help .help_account,
+help_pwd {
+    border-right: 1px solid rgb(144, 147, 153);
+    padding-right: 10px;
+}
+
+/*lhh 自定义css布局全局样式*/
+.row-l {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.row-r {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.row-c {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row-lr {
+    display: flex;
+    justify-content: space-between;
+    /*align-items: center;*/
+}
+
+.overflow-row-1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.overflow-row-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
