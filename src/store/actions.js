@@ -18,5 +18,17 @@ export default {
             commit(types.SET_USER, res.data);
         }
         return res;
+    },
+    setLang({commit, state}, locale) {
+        const langs = state.langs;
+
+        //获取选中的lang
+        let lang;
+        langs.forEach((it) => {
+            if (it.locale === locale) {
+                lang = it;
+            }
+        });
+        commit('SET_LANG', lang);
     }
 };

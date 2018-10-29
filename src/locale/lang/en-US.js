@@ -1,36 +1,102 @@
 export default {
-  home: 'Home',
-  components: 'Components',
-  count_to_page: 'Count-to',
-  tables_page: 'Table',
-  split_pane_page: 'Split-pane',
-  markdown_page: 'Markdown-editor',
-  editor_page: 'Rich-Text-Editor',
-  icons_page: 'Custom-icon',
-  img_cropper_page: 'Image-editor',
-  update: 'Update',
-  doc: 'Document',
-  join_page: 'QQ Group',
-  update_table_page: 'Update .CSV',
-  update_paste_page: 'Paste Table Data',
-  multilevel: 'multilevel',
-  directive_page: 'Directive',
-  level_1: 'Level-1',
-  level_2: 'Level-2',
-  level_2_1: 'Level-2-1',
-  level_2_3: 'Level-2-3',
-  level_2_2: 'Level-2-2',
-  level_2_2_1: 'Level-2-2-1',
-  excel: 'Excel',
-  'upload-excel': 'Upload Excel',
-  'export-excel': 'Export Excel',
-  tools_methods_page: 'Tools Methods',
-  drag_list_page: 'Drag-list',
-  i18n_page: 'Internationalization',
-  modalTitle: 'Modal Title',
-  content: 'This is the modal box content.',
-  buttonText: 'Show Modal',
-  'i18n-tip': 'Note: Only this page is multi-language, other pages do not add language content to the multi-language package.',
-  error_store_page: 'Error Collection',
-  error_logger_page: 'Error Logger'
+    home: 'Home',
+
+    //langs
+    'Simplified Chinese': 'Simplified Chinese',
+    'English': 'English',
+    'Korea': 'Korea',
+    'Russia': 'Russia',
+
+
+    //home ranking
+    'Today Leader Board': "Today's Leaderboard",
+    'Giveaway': '{title} Giveaway',
+    'Rank': 'Rank',
+    'Bettor': 'Bettor',
+    'Total Wager': 'Total Wager',
+    'Reset Time Tips': 'Reset at UTC 00:00 everyday. Data may be delayed up to 3 minutes.',
+
+
+    //bet tabs
+    'bet tips': 'WARNING: Turning Auto Bet on will result in your bet continuing to be placed until Auto Bet is turned off. There may be a slight delay when turning Auto Bet off that results in an additional roll.',
+    'Bet to get': 'Bet to get',
+    'Bet now for FREE tokens to get': 'Bet now for FREE tokens  6.25x   DICE ',
+    'BET AMOUNT': 'BET AMOUNT',
+    'PAYOUT ON WIN': 'PAYOUT ON WIN',
+    'ROLL UNDER TO WIN': 'ROLL UNDER TO WIN',
+    'PAYOUT': 'PAYOUT',
+    'WIN CHANCE': 'WIN CHANCE',
+    'Off': 'Off',
+    'Auto Bet': 'Auto Bet',
+
+
+    //tabs
+    'All Bets': 'All Bets',
+    'My Bets': 'My Bets',
+    'Top Wager': 'Top Wager',
+    'Top Payout': 'Top Payout',
+    'Net Profit': 'Net Profit',
+    'Total Payout': 'Total Payout',
+    'Play Count': 'Play Count',
+
+
+    //tab-1
+    'Time': 'Time',
+    'Tab Bettor': 'Bettor',
+    'Roll Under': 'Roll Under',
+    'Bet': 'Bet',
+    'Roll': 'Roll',
+    'Tab Payout': 'Payout',
+
+
+    //nav bar
+    'Referral': 'Referral',
+    'How to Play': 'How to Play',
+    'Payout': 'Payout',
+    'VIP': 'VIP',
+    'Login': 'Login',
+
+    //fixed bet
+    'Go To Buy Tickets': 'Buy Tickets',
+    'Draw Time': 'Draw Time',
+
+
+    //lottery
+    'Lottery Pot': 'Lottery Pot',
+    'Prizes': 'Prizes',
+    'Buy Tickets': 'Buy Tickets',
+    'History': 'History',
+
+
+    'Round Lottery Pot': 'Round {sum} Lottery Pot',
+    'Next Drawing': 'Next Drawing',
+
+    "Your Tickets": 'Your Tickets',
+    'Win Chance': 'Win Chance',
+    'Total Tickets': 'Total Tickets',
+
+
+    'Total Count Tickets': 'Total Tickets',
+
+    //bonus
+    'Prize': 'Prize',
+    'Current Lottery Pot': 'Current Lottery Pot',
+
+    //bet
+    'Ticket': 'Ticket',
+    'Price per Ticket': 'Price per Ticket',
+    'Total': 'Total',
+
+    //history
+    'Round Count Lottery': 'Round {count} Lottery',
+    'Winner': 'Winner',
+    'User': 'User',
+    'Win Prize': 'Win Prize',
+    'Ticket Number': 'Ticket Number',
+    'Owned Ratio': 'Owned Ratio',
+
+
+    //footer
+    'Contact us': 'Contact us',
+    'Business cooperation': 'Business cooperation',
 }

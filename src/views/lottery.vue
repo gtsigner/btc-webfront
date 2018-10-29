@@ -7,19 +7,19 @@
                         @click="choose(tab)"
                         :class="{'active':i===current.i}">
                         <i :class="tab.icon"></i>
-                        {{tab.title}}
+                        {{$t(tab.title)}}
                     </li>
                 </ul>
             </li>
             <li class="show-items">
                 <div>0</div>
-                <p>你的彩票数</p><i class="fa fa-user"></i></li>
+                <p>{{$t('Your Tickets')}}</p><i class="fa fa-user"></i></li>
             <li class="show-items">
                 <div>0%</div>
-                <p>中奖概率</p><img src="../assets/images/ticket_icon.jpg" alt=""></li>
+                <p>{{$t('Win Chance')}}</p><img src="../assets/images/ticket_icon.jpg" alt=""></li>
             <li class="show-items pool-count">
                 <div>415826</div>
-                <p>奖池彩票数</p><img src="../assets/images/ticket_icon.jpg" alt=""></li>
+                <p>{{$t('Total Tickets')}}</p><img src="../assets/images/ticket_icon.jpg" alt=""></li>
         </ul>
 
         <!--动态组件-->
@@ -46,29 +46,30 @@
                 tabs: [
                     {
                         i: 0,
-                        title: '奖池',
+                        title: 'Lottery Pot',
                         comp: 'game-pool',
                         icon: 'fa fa-pie-chart',
                     },
                     {
                         i: 1,
-                        title: '排名奖励',
+                        title: 'Prizes',
                         comp: 'game-bonus',
                         icon: 'fa fa-bar-chart',
                     },
                     {
                         i: 2,
-                        title: '下注',
+                        title: 'Buy Tickets',
                         comp: 'game-bet',
                         icon: 'fa fa-life-ring',
                     },
                     {
                         i: 3,
-                        title: '记录',
+                        title: 'History',
                         comp: 'game-log',
                         icon: 'fa fa-clock-o',
                     },
-                ]
+                ],
+                total: {}
             }
         },
         methods: {

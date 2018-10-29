@@ -4,9 +4,9 @@
             <div class="_left">
                 <div class="logo"><img src="../../assets/images/BetDice.png" alt=""></div>
                 <div class="contact">
-                    <a class="link" href="">联系我们</a>
+                    <a class="link" href="">{{$t('Contact us')}}</a>
                     <span class="line"></span>
-                    <a class="link" href="">投资合作</a>
+                    <a class="link" href="">{{$t('Business cooperation')}}</a>
                 </div>
             </div>
             <div class="_right">

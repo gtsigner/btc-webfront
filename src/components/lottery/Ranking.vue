@@ -1,43 +1,51 @@
 <template>
     <div class="ranking-container">
         <div class="ranking-comp">
-            <h2><i class="fa fa-bar-chart-o"></i> 今日排行榜 (03:16:29)</h2>
-            <ul class="table-header " style="margin: 0px; padding: 0px;">
-                <li class="t-header" style="height: 40px; padding: 6px 20px 0px;"><span
-                    style="text-align: center; flex: 0 0 52px; display: inline-block;">排名</span><span>投注者</span><span>总投注额</span><span>奖励</span>
+            <h2><i class="fa fa-bar-chart-o"></i> {{$t("Today Leader Board")}} (03:16:29)</h2>
+            <ul class="table-header">
+                <li class="t-header">
+                    <span class="rank-col">{{$t('Rank')}}</span>
+                    <span>{{$t('Bettor')}}</span>
+                    <span>{{$t('Total Wager')}}</span>
+                    <span>{{$t('Prize')}}</span>
                 </li>
             </ul>
-            <ul id="is-dice" class="table-list data ">
-                <li class="items top1"><span>1</span><span>bettobigmoon</span><span><em style="font-weight: 600;">165,712</em><em
-                    style="font-size: 12px; padding-left: 4px;">EOS</em></span><span><em
-                    style="font-weight: 600; color: rgb(41, 224, 141);">2500</em><em
-                    style="font-size: 12px; padding-left: 4px;">EOS</em></span></li>
-                <li class="items top100"><span>100</span><span>hellohellogc</span><span><em style="font-weight: 600;">1,803</em><em
-                    style="font-size: 12px; padding-left: 4px;">EOS</em></span><span><em
-                    style="font-size: 12px; padding-left: 4px;">-</em></span></li>
+            <ul :id="game.icon" class="table-list data">
+                <li class="items" v-for="i in 20" :class="'top'+i">
+                    <span>{{i}}</span>
+                    <span>bettobigmoon</span>
+                    <span>
+                        <em style="font-weight: 600;">165,712</em>
+                        <em class="game-type">EOS</em>
+                    </span>
+                    <span>
+                        <em style="font-weight: 600; color: rgb(41, 224, 141);">2500</em>
+                        <em class="game-type">EOS</em>
+                    </span>
+                </li>
             </ul>
             <ul class="table-list user ">
                 <li class="items user"><span>-</span><span>-</span><span><em style="font-weight: 600;">0.0000</em><em
                     style="font-size: 12px; padding-left: 4px;">EOS</em></span><span></span></li>
+
             </ul>
-            <div class="info-font "
-                 style="padding-left: 15px; padding-bottom: 5px; color: rgb(187, 187, 187); font-size: 13px;">*
-                数据最多延迟三分钟并于每天UTC 00:00 重置
+            <div class="info-font tips">
+                * {{$t('Reset Time Tips')}}
             </div>
-            <div class="flag"><a target="_blank"
-                                 href="https://medium.com/@betdice/betdice-event-week-is-being-extended-for-one-final-week-e255f1a76ed">
-                <div class="msg"><p class="neon1"
-                                    style="color: rgb(233, 30, 99); animation: neon1 0.75s ease-in-out 0s infinite alternate none running;">
-                    4000
-                </p>
-                    <p>EOS大赠送</p></div>
-            </a></div>
-            <div class="btn-ctrl ">
-                <button type="button" class="el-button el-button--info el-button--mini is-circle"
-                        style="background: transparent;"><!----><i class="el-icon-arrow-left"></i><!----></button>
-                <button type="button" class="el-button el-button--info el-button--mini is-circle"
-                        style="background: transparent; cursor: auto; opacity: 0.2;"><!----><i
-                    class="el-icon-arrow-right"></i><!----></button>
+            <div class="flag">
+                <a target="_blank"
+                   href="https://medium.com/@betdice/betdice-event-week-is-being-extended-for-one-final-week-e255f1a76ed">
+                    <div class="msg">
+                        <p class="neon1">4000</p>
+                        <p>{{$t('Giveaway',{title:game.title})}}</p></div>
+                </a></div>
+            <div class="btn-ctrl">
+                <el-button style="background: transparent;" type="info" size="mini" circle>
+                    <i class="el-icon-arrow-left"></i>
+                </el-button>
+                <el-button style="background: transparent; cursor: auto; opacity: 0.2;" type="info" size="mini" circle>
+                    <i class="el-icon-arrow-right"></i>
+                </el-button>
             </div>
         </div>
     </div>
@@ -45,11 +53,67 @@
 
 <script>
     export default {
-        name: "Ranking"
+        name: "Ranking",
+        data() {
+            return {}
+        },
+        computed: {
+            game() {
+                return this.$store.state.game.current;
+            },
+        }
     }
 </script>
 
 <style scoped lang="scss">
+
+    .ranking-container {
+        position: absolute;
+        top: 20px;
+        right: 0;
+        width: 500px;
+        .info-font {
+            &.tips {
+                padding-left: 15px;
+                padding-bottom: 5px;
+                color: rgb(187, 187, 187);
+                font-size: 13px;
+            }
+        }
+
+        .game-type {
+            font-size: 12px;
+            padding-left: 4px;
+        }
+
+        .ranking-comp {
+            .table-header {
+                margin: 0;
+                padding: 0;
+            }
+            .t-header {
+                height: 40px;
+                padding: 6px 20px 0;
+                .rank-col {
+                    text-align: center;
+                    flex: 0 0 52px;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 1180px) {
+        .ranking-container {
+            padding-top: 10px;
+            position: relative;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 768px;
+            margin: 0 auto 20px;
+        }
+    }
 
     .ranking-comp {
         max-width: 768px;
@@ -83,8 +147,10 @@
             min-height: 28px;
             border-radius: 4px;
         }
-        > ul.table-list.data#is-dice {
-            height: 245px;
+        > ul.table-list.data {
+            &#game-eos {
+                height: 245px;
+            }
         }
         > ul.table-list.user {
             padding-top: 6px;
@@ -285,7 +351,13 @@
         }
     }
 
+    .neon1 {
+        color: rgb(233, 30, 99);
+        animation: neon1 0.75s ease-in-out 0s infinite alternate none running;
+    }
+
     @-webkit-keyframes neon1 {
+
         from {
             text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
         }

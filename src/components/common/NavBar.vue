@@ -4,15 +4,16 @@
             <div class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <button type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                        <button type="button" data-toggle="collapse"
+                                data-target="#bar-menu"
                                 aria-expanded="false" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span
                             class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
                         </button>
-                        <a href="/" class="navbar-brand">
+                        <router-link to="/" class="navbar-brand">
                             <img src="../../assets/images/logo.png" alt="" class="logo-img">
-                        </a>
+                        </router-link>
                     </div>
-                    <div class="navbar-collapse collapse" aria-expanded="false">
+                    <div id="bar-menu" class="navbar-collapse collapse" aria-expanded="false">
                         <ul class="nav navbar-nav navbar-right">
                             <!--图标-->
                             <li class="no-shadow">
@@ -26,30 +27,29 @@
                                         </a>
                                     </div>
                                 </a></li>
-                            <li class="dropdown"><a href="#" data-toggle="dropdown" role="button"
-                                                    aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">
-                                <!----><span class="country-flag china">简体中文</span><!----><!----><!----><span
-                                class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#" class="country-flag usa">英文</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" class="country-flag china">简体中文</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" class="country-flag hongkong">繁体中文</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" class="country-flag korea">韩文</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#" class="country-flag russia">俄文</a></li>
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                   aria-expanded="false" class="dropdown-toggle">
+                                    <span class="country-flag" :class="lang.icon">{{$t(lang.title)}}</span>
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu lang-menus">
+                                    <li v-for="(lang,i) in langs">
+                                        <a @click="chooseLang(lang.locale)"
+                                           class="country-flag"
+                                           :class="lang.icon">{{$t(lang.title)}}
+                                        </a>
+                                    </li>
                                 </ul>
                             </li><!---->
-                            <li><a href="#">邀请好友</a></li>
-                            <li><a href="#">玩法介绍</a></li><!---->
-                            <li><a href="#">红利</a></li>
-                            <li><a href="/vip" class="">VIP</a></li>
+                            <li><a href="#">{{$t('Referral')}}</a></li>
+                            <li><a href="#">{{$t('How to Play')}}</a></li><!---->
+                            <li><a href="#">{{$t('Payout')}}</a></li>
+                            <li><a href="/vip" class="">{{$t('VIP')}}</a></li>
                             <li class="user-dashboard">
                                 <a href="#" class="action-box">
                                     <el-button type="primary" size="mini">
-                                        <span><i class="fa fa-user"></i> 登入</span>
+                                        <span><i class="fa fa-user"></i> {{$t('Login')}}</span>
                                     </el-button>
                                 </a>
                             </li>
@@ -65,11 +65,24 @@
     export default {
         name: "NavBar",
         data() {
-            return {
-                langs: [
-                    {title: ''},
-                ],
+            return {}
+        },
+        computed: {
+            langs() {
+                return this.$store.state.langs;
+            },
+            lang() {
+                return this.$store.state.lang;
             }
+        },
+        methods: {
+            chooseLang(locale) {
+                this.$i18n.locale = locale;
+                this.$store.dispatch('setLang', locale);
+            }
+        },
+        created() {
+            this.chooseLang(this.$i18n.locale);
         }
     }
 </script>
@@ -92,7 +105,6 @@
     }
 
     .nav-bar {
-        overflow: hidden;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
@@ -190,21 +202,23 @@
         }
     }
 
-    @media screen and (max-width: 768px) {
-        .nav-bar .logo-img {
-            width: 100%;
-        }
-        .nav-bar .navbar-brand{
-            height: 50px;
-            padding: 15px 15px !important;
-            width: 140px;
-        }
-    }
-
     .nav-bar {
         //语言包
-        .country-flag {
+        span.country-flag {
             padding: 5px 0 5px 42px;
+        }
+        .lang-menus {
+            > li {
+                border-bottom: 1px solid #eee;
+                cursor: pointer;
+                padding: 5px;
+                &:last-child {
+                    border-bottom: 0;
+                }
+            }
+        }
+        .country-flag {
+            padding: 3px 20px 3px 40px;
             background: url(../../assets/images/flag_england.jpg) 9px 4px no-repeat;
             &.china {
                 background-image: url(../../assets/images/flag_china.png);
@@ -215,15 +229,77 @@
         }
         .navbar-collapse {
             > ul > li > a {
-                padding: 20px 12px;
                 line-height: 20px;
             }
         }
     }
 
-    @media screen and (min-width: 768px) and (max-width: 992px) {
+    //menu
+    .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+        background: transparent;
+        color: #fff;
+    }
+
+    .navbar-collapse {
+        border: none;
+    }
+
+    .navbar-default .navbar-toggle {
+        border-color: transparent;
+        .icon-bar {
+            background-color: #fff;
+        }
+        &:hover, &:focus {
+            border-color: transparent !important;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
         .nav-bar .navbar-right ul.link {
             display: none;
+        }
+        .navbar-nav .open .dropdown-menu > li > a {
+            line-height: 20px;
+        }
+        .nav-bar {
+            .navbar-nav .open .dropdown-menu {
+                > li > a {
+                    padding-left: 80px !important;
+                    color: #fff;
+                    background-position-y: 7px;
+                    background-position-x: 50px;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .nav-bar .logo-img {
+            width: 100%;
+        }
+        .nav-bar {
+            .navbar-brand {
+                height: 50px;
+                padding: 15px 15px !important;
+                width: 140px;
+            }
+            .bar-menu > ul > li > a {
+                padding: 20px 12px;
+            }
+        }
+    }
+
+    @media (min-width: 768px) {
+        .navbar-nav > li > a {
+            padding-top: 20px;
+        }
+    }
+
+    @media screen and (min-width: 769px) {
+        .nav-bar {
+            .bar-menu > ul > li > a {
+                padding: 20px 12px;
+            }
         }
     }
 </style>

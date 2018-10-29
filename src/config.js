@@ -18,4 +18,15 @@ if (isProd === true) {
 export const localRead = (key) => {
     return localStorage.getItem(key) || ''
 }
+
+const SYSTEM_LANGUAGE = 'LANGUAGE_CONFIG';
+
+export function setLang(lang) {
+    return localStorage.setItem(SYSTEM_LANGUAGE, lang);
+}
+
+export function getLang() {
+    return localStorage.getItem(SYSTEM_LANGUAGE) || '';
+}
+
 export default config;

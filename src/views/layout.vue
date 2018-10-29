@@ -18,11 +18,22 @@
                     <router-link exact-active-class="active" to="/exchange">Exchange</router-link>
                 </li>
             </ul>
+
+            <!--游戏tab-->
+            <div class="game-tabs">
+                <button v-for="g in games" :key="g.id"
+                        :class="[g.id===game.id?'active':'',g.icon]"
+                        @click="choose(g)"
+                        class="game-tab-btn">
+                    <em>{{g.title}}</em>
+                </button>
+            </div>
             <router-view class="main-container"></router-view>
         </div>
         <!--右侧下单的组件-->
         <cm-footer></cm-footer>
         <fixed-bet></fixed-bet>
+
     </div>
 </template>
 
@@ -30,16 +41,57 @@
     import NavBar from "../components/common/NavBar";
     import CmFooter from "../components/common/CmFooter";
     import FixedBet from "../components/common/FixedBet";
+    import InviteComp from "../components/cover/InviteComp";
 
     export default {
         name: 'home',
-        components: {FixedBet, CmFooter, NavBar},
+        components: {InviteComp, FixedBet, CmFooter, NavBar},
+        props: {},
         data() {
-            return {}
+            return {
+                games: [],
+            }
+        },
+        computed: {
+            game() {
+                return this.$store.state.game.current;
+            }
+        },
+        methods: {
+            async getGames() {
+                //const res = await http.get('games');//....
+                const res = [
+                    {
+                        id: 1,
+                        title: 'EOS',
+                        icon: 'game-eos',
+                        logo: '/images/eos_icon_big_new.png',
+                        enable: 1
+                    },
+                    {
+                        id: 2,
+                        title: 'DICE',
+                        icon: 'game-dice',
+                        logo: '/images/dice_icon_big.png',
+                        enable: 1,
+                    },
+                ];
+                this.games = [...res];
+                this.choose(this.games[0]);
+            },
+            //选中一款游戏
+            async choose(game) {
+                this.$store.commit('SET_GAME', game);
+            }
+        },
+        created() {
+            this.getGames();
         }
-    };
+    }
 </script>
 <style scoped lang="scss">
+
+    //game nav
     .game-nav {
         width: 100%;
         position: relative;
@@ -94,6 +146,51 @@
             }
         }
     }
+
+    //#region game tabs
+    .game-tabs {
+        text-align: center;
+        padding: 16px 0 5px;
+        .game-tab-btn {
+            background-repeat: no-repeat;
+            background-position-x: 10px;
+            background-position-y: center;
+            background-size: 20px;
+            &.game-dice {
+                background-image: url(../assets/images/dice_icon_big.png);
+            }
+            &.game-eos {
+                background-image: url(../assets/images/eos_icon_big_new.png);
+            }
+        }
+        button {
+            padding: 6px 15px 6px 34px;
+            border-radius: 6px;
+            margin: 0 5px;
+            background-color: #252e51;
+            color: #fff;
+            &.active {
+                background-color: #f1940f;
+            }
+        }
+    }
+
+    @media screen and (max-width: 580px) {
+        .game-tabs {
+            button {
+                display: inline-block;
+                height: 32px;
+                width: 32px;
+                text-align: center;
+                padding: 6px 20px !important;
+                em {
+                    display: none !important;
+                }
+            }
+        }
+    }
+
+    //#endregion
 
     .main-container {
         max-width: 1180px;

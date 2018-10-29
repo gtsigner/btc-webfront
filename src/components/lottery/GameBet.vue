@@ -1,11 +1,11 @@
 <template>
     <div class="game-bet">
-        <div class="lottery-bet"><h3>购入彩票</h3>
+        <div class="lottery-bet"><h3>{{$t('Buy Tickets')}}</h3>
             <ul class="row-1">
                 <li>
                     <ol>
                         <li class="tokens-icon first"><i></i><input
-                            type="text" spellcheck="false"><span>张</span></li>
+                            type="text" spellcheck="false"><span>{{$t('Ticket')}}</span></li>
                         <li class="btns">1/2</li>
                         <li class="btns add-line">2X</li>
                         <li class="btns">MAX</li>
@@ -15,10 +15,10 @@
             <ul class="row-2">
                 <li><img src="../../assets/images/price_icon.jpg" alt="">
                     <h2>0.0001 <em>EOS</em></h2>
-                    <p>每张售价</p></li>
+                    <p>{{$t('Price per Ticket')}}</p></li>
                 <li><img src="../../assets/images/total_icon.jpg" alt="">
                     <h2>1.0000 <em> EOS</em></h2>
-                    <p>共合计</p></li>
+                    <p>{{$t('Total')}}</p></li>
             </ul><!----><!----></div>
     </div>
 </template>

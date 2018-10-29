@@ -3,18 +3,19 @@
         <ul class="tabs">
             <li class="tab-li"
                 @click="check(tab)"
-                :class="{'active':current.i===tab.i}" v-for="(tab,i) in tabs" :key="i">{{tab.title}}
+                :class="{'active':current.i===tab.i}" v-for="(tab,i) in tabs" :key="i">
+                {{$t(tab.title)}}
             </li>
         </ul>
         <table class="table table-striped text-center">
             <thead>
             <tr>
-                <th style="width: 14%;">时间</th>
-                <th style="width: 8%;">投注者</th>
-                <th class="only-pc" style="width: 12%;">小于该号码获胜</th>
-                <th class="only-pc" style="width: 12%;">投注</th>
-                <th class="only-pc" style="width: 8%;">开奖号码</th>
-                <th style="width: 15%;">奖金</th>
+                <th style="width: 14%;">{{$t('Time')}}</th>
+                <th style="width: 8%;">{{$t('Tab Bettor')}}</th>
+                <th class="only-pc" style="width: 12%;">{{$t('Roll Under')}}</th>
+                <th class="only-pc" style="width: 12%;">{{$t('Bet')}}</th>
+                <th class="only-pc" style="width: 8%;">{{$t('Roll')}}</th>
+                <th style="width: 15%;">{{$t('Tab Payout')}}</th>
             </tr>
             </thead>
             <tbody>
@@ -48,14 +49,14 @@
                     i: 1
                 },
                 tabs: [
-                    {i: 0, title: '所有投注',},
-                    {i: 1, title: '我的投注'},
-                    {i: 2, title: '最高投注额'},
-                    {i: 3, title: '最高奖金'},
-                    {i: 4, title: '淨利润'},
-                    {i: 5, title: '总投注额'},
-                    {i: 6, title: '总奖金'},
-                    {i: 7, title: '总投注次数'}
+                    {i: 0, title: 'All Bets',},
+                    {i: 1, title: 'My Bets'},
+                    {i: 2, title: 'Top Wager'},
+                    {i: 3, title: 'Top Payout'},
+                    {i: 4, title: 'Net Profit'},
+                    {i: 5, title: 'Total Wager'},
+                    {i: 6, title: 'Total Payout'},
+                    {i: 7, title: 'Play Count'}
                 ],
             }
         },
@@ -142,5 +143,9 @@
                 overflow-x: scroll;
             }
         }
+        .only-pc {
+            display: none;
+        }
     }
+
 </style>

@@ -1,37 +1,98 @@
 export default {
-  home: '首页',
-  components: '组件',
-  count_to_page: '数字渐变',
-  tables_page: '多功能表格',
-  split_pane_page: '分割窗口',
-  markdown_page: 'Markdown编辑器',
-  editor_page: '富文本编辑器',
-  icons_page: '自定义图标',
-  img_cropper_page: '图片编辑器',
-  update: '上传数据',
-  join_page: 'QQ群',
-  doc: '文档',
-  update_table_page: '上传CSV文件',
-  update_paste_page: '粘贴表格数据',
-  multilevel: '多级菜单',
-  directive_page: '指令',
-  level_1: 'Level-1',
-  level_2: 'Level-2',
-  level_2_1: 'Level-2-1',
-  level_2_3: 'Level-2-3',
-  level_2_2: 'Level-2-2',
-  level_2_2_1: 'Level-2-2-1',
-  excel: 'Excel',
-  'upload-excel': '上传excel',
-  'export-excel': '导出excel',
-  tools_methods_page: '工具函数',
-  drag_list_page: '拖拽列表',
-  i18n_page: '多语言',
-  modalTitle: '模态框题目',
-  content: '这是模态框内容',
-  buttonText: '显示模态框',
-  'i18n-tip': '注：仅此页做了多语言，其他页面没有在多语言包中添加语言内容',
-  error_store_page: '错误收集',
-  error_logger_page: '错误日志'
+    home: '首页',
 
+
+    //语言
+    'Simplified Chinese': '简体中文',
+    'English': '英文',
+    'Korea': '韩文',
+    'Russia': '俄文',
+
+
+    //home ranking
+    'Today Leader Board': "今日排行榜",
+    'Giveaway': '{title}大赠送',
+    'Rank': '排名',
+    'Bettor': '排名',
+    'Total Wager': '总投注额',
+    'Reset Time Tips': '数据最多延迟三分钟并于每天UTC 00:00 重置',
+
+    //bet tabs
+    'bet tips': '开启自动投注后，将会按当前投注设定自动投注直至取消，取消会有一两秒延迟，敬请留意',
+    'Bet to get': '下注可获得',
+    'Bet now for FREE tokens to get': '现在投注可获得投注货币  6.25x   DICE ',
+    'BET AMOUNT': '投注金额',
+    'PAYOUT ON WIN': '赢取奖金',
+    'ROLL UNDER TO WIN': '小于该数获胜',
+    'PAYOUT': '赔率',
+    'WIN CHANCE': '中奖概率',
+    'Off': '关闭',
+    'Auto Bet': '自动投注',
+
+    //tabs
+    'All Bets': '所有投注',
+    'My Bets': '我的投注',
+    'Top Wager': '最高投注额',
+    'Top Payout': '最高奖金',
+    'Net Profit': '淨利润',
+    'Total Payout': '总奖金',
+    'Play Count': '总投注次数',
+
+
+    //tab-1
+    'Time': '时间',
+    'Tab Bettor': '投注者',
+    'Roll Under': '小于该号码获胜',
+    'Bet': '投注',
+    'Roll': '开奖号码',
+    'Tab Payout': '奖金',
+
+
+    //nav bar
+    'Referral': '邀请好友',
+    'How to Play': '玩法介绍',
+    'Payout': '红利',
+    'VIP': 'VIP',
+    'Login': '登入',
+
+    //fixed bet
+    'Go To Buy Tickets': '前往下注',
+    'Draw Time': '彩票开奖时间',
+
+
+    //lottery 页面
+    'Lottery Pot': '奖池',
+    'Prizes': '排名奖励',
+    'Buy Tickets': '下注',
+    'History': '记录',
+
+    'Round Lottery Pot': '第{sum}轮奖池已累积',
+    'Next Drawing': '开奖倒计时',
+
+    "Your Tickets": '您的彩票数',
+    'Win Chance': '中奖概率',
+    'Total Tickets': '奖池彩票数',
+
+
+    //bonus
+    'Prize': '排名',
+    'Current Lottery Pot': '当前彩池',
+
+    //bet
+    'Ticket': '张',
+    'Price per Ticket': '每张售价',
+    'Total': '共合计',
+
+    //history
+    'Round Count Lottery': '第{count}轮投注记录',
+    'Winner': '本轮幸运者',
+    'User': '用户ID',
+    'Win Prize': '赢取奖金',
+    'Ticket Number': '彩票号码',
+    'Owned Ratio': '彩票佔比',
+    'Total Count Tickets': '总票数',
+
+    //footer
+    'Contact us': '联络我们',
+    'Business cooperation': '投资合作',
 }

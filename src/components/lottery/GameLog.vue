@@ -3,8 +3,8 @@
         <div class="lottery-log">
             <ul class="table-header">
                 <li id="log-page-top" class="top">
-                    <h2>第21轮投注记录</h2>
-                    <p>本轮幸运者</p>
+                    <h2>{{$t('Round Count Lottery',{count:200})}}</h2>
+                    <p>{{$t('Winner')}}</p>
                     <div class="name">
                         liketerryfox
                         <button type="button"
@@ -17,19 +17,19 @@
                                 style="background: transparent; cursor: auto; opacity: 0.3;"><!----><i
                             class="el-icon-arrow-right"></i><!----></button>
                     </div>
-                    <div class="money">奖金：<em
+                    <div class="money">{{$t('User')}}：<em
                         style="font-weight: 800; font-size: 1.2em;">591.5828</em>
                         EOS
                     </div>
-                    <p class="total">总票数：10,915,019</p></li>
+                    <p class="total">{{$t('Total Count Tickets')}}：10,915,019</p></li>
             </ul>
             <ul class="table-list data">
                 <li class="t-header">
                     <span class="no">#</span>
-                    <span>用户ID</span>
-                    <span>赢取奖金</span>
-                    <span>彩票号码</span>
-                    <span>彩票佔比</span>
+                    <span>{{$t('User')}}</span>
+                    <span>{{$t('Win Prize')}}</span>
+                    <span>{{$t('Ticket Number')}}</span>
+                    <span>{{$t('Owned Ratio')}}</span>
                 </li>
                 <li class="items">
                     <span class="no1"><i>1</i></span>

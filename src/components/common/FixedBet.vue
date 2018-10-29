@@ -1,10 +1,10 @@
 <template>
     <div class="fixed-bet">
-        <a href="/lottery" class="">
-            <p><em class="fa fa-clock-o"></em>彩票开奖时间</p>
+        <router-link to="/lottery">
+            <p><em class="fa fa-clock-o"></em> {{$t('Draw Time')}}</p>
             <div class="time">00:04:48</div>
-            <div class="link">前往下注</div>
-        </a>
+            <div class="link">{{$t('Go To Buy Tickets')}}</div>
+        </router-link>
     </div>
 </template>
 

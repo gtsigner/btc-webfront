@@ -2,12 +2,12 @@
     <div class="game-pool">
         <div class="ticket">
             <div class="t-left">
-                <p>第22轮奖池已累积</p>
-                <h2>366.6719<em>EOS</em></h2>
+                <p>{{$t('Round Lottery Pot',{sum:24})}}</p>
+                <h2>366.6719<em>{{game.title}}</em></h2>
             </div>
-            <div class="t-right"></div>
+            <div class="t-right" :class="game.icon"></div>
         </div>
-        <div class="lottery-clock"><h2>开奖倒计时</h2>
+        <div class="lottery-clock"><h2>{{$t('Next Drawing')}}</h2>
             <ul>
                 <li>0</li>
                 <li>1</li>
@@ -28,7 +28,12 @@
 
 <script>
     export default {
-        name: "GamePool"
+        name: "GamePool",
+        computed: {
+            game() {
+                return this.$store.state.game.current;
+            }
+        }
     }
 </script>
 
@@ -89,7 +94,12 @@
                 border-left: 2px dashed #d2a818;
                 position: relative;
                 background-size: 63px !important;
-                background: url(../../assets/images/eos_icon_big_new.png) center 50px no-repeat;
+                &.game-eos {
+                    background: url(../../assets/images/eos_icon_big_new.png) center 50px no-repeat;
+                }
+                &.game-dice {
+                    background: url(../../assets/images/dice_icon_big.png) center 50px no-repeat;
+                }
                 &:after {
                     top: 0;
                     background-color: #191c35;

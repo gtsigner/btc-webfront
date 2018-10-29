@@ -6,23 +6,26 @@
                      style="width: 100%; position: absolute; top: -15%;">
                 <div class="recent_pool">
                     <div class="rect-pool-bg">
-                        <p class="title">当前彩池：</p><span style="color: white;"> 419.4065 EOS</span>
+                        <p class="title">{{$t('Current Lottery Pot')}}：</p><span
+                        style="color: white;"> 419.4065 EOS</span>
                     </div>
                 </div>
                 <div class="ranking">
                     <div style="position: relative; margin-bottom: 10px;"><img
                         src="../../assets/images/lottery_title0.png"
                         alt=""
-                        style="width: 66%;"><span class="pm-jl">排名奖励</span>
+                        style="width: 66%;"><span class="pm-jl">{{$t('Prizes')}}</span>
                     </div>
                     <div class="recent_pool_phone">
                         <div class="pool-2-bg">
-                            <p style="margin: 0px; font-size: 12px; color: white; font-weight: 300;">当前彩池：</p><span
-                            style="color: white;"> 419.4065 EOS</span></div>
+                            <p style="margin: 0px; font-size: 12px; color: white; font-weight: 300;">
+                                {{$t('Current Lottery Pot')}}：</p>
+                            <span style="color: white;"> 419.4065 EOS</span>
+                        </div>
                     </div>
                     <div>
                         <div class="first_award">
-                            #1 奖励
+                            #1 {{$t('Prize')}}
                         </div>
                     </div>
                     <div class="ranking_data"><h3>209.7032</h3>
@@ -39,7 +42,7 @@
                 <div class="row">
                     <div id="top-2" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 second">
                         <div class="ranking">
-                            #<em style="font-size: 1.25rem; font-weight: 400;">2</em> 奖励
+                            #<em style="font-size: 1.25rem; font-weight: 400;">2</em> {{$t('Prize')}}
                         </div>
                         <div class="chara"><h3>104.8516</h3>
                             <div><span class="line"></span><span
@@ -52,7 +55,7 @@
                     </div>
                     <div id="top-3" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 second">
                         <div class="ranking">
-                            #<em style="font-size: 1.25rem; font-weight: 400;">3</em> 奖励
+                            #<em style="font-size: 1.25rem; font-weight: 400;">3</em> {{$t('Prize')}}
                         </div>
                         <div class="chara"><h3>52.4258</h3>
                             <div><span class="line"></span><span
@@ -65,7 +68,7 @@
                     </div>
                     <div id="top-4" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 second">
                         <div class="ranking">
-                            #<em style="font-size: 1.25rem; font-weight: 400;">4</em> 奖励
+                            #<em style="font-size: 1.25rem; font-weight: 400;">4</em> {{$t('Prize')}}
                         </div>
                         <div class="chara"><h3>26.2129</h3>
                             <div><span class="line"></span><span
@@ -78,7 +81,7 @@
                     </div>
                     <div id="top-5" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 second">
                         <div class="ranking">
-                            #<em style="font-size: 1.25rem; font-weight: 400;">5</em> 奖励
+                            #<em style="font-size: 1.25rem; font-weight: 400;">5</em> {{$t('Prize')}}
                         </div>
                         <div class="chara"><h3>13.1064</h3>
                             <div><span class="line"></span><span
