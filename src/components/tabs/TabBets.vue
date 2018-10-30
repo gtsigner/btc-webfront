@@ -45,13 +45,16 @@
         },
         methods: {
             load() {
-                this.len = Math.floor(Math.random() * 5);
+                this.len = Math.floor(Math.random() * 5) + 1;
             }
         },
         watch: {
             'search'() {
                 this.load();
             }
+        },
+        mounted() {
+            this.load();
         },
         created() {
             this.load();

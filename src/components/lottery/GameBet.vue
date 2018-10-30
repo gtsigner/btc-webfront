@@ -4,20 +4,22 @@
             <ul class="row-1">
                 <li>
                     <ol>
-                        <li class="tokens-icon first"><i></i><input
-                            type="text" spellcheck="false"><span>{{$t('Ticket')}}</span></li>
-                        <li class="btns">1/2</li>
-                        <li class="btns add-line">2X</li>
-                        <li class="btns">MAX</li>
+                        <li class="tokens-icon first"><i></i>
+                            <input v-model="bet.money" type="text" spellcheck="false">
+                            <span>{{$t('Ticket')}}</span>
+                        </li>
+                        <li class="btns" @click="fix(0.5)">1/2</li>
+                        <li class="btns add-line" @click="fix(2)">2X</li>
+                        <li class="btns" @click="bet.money=bet.max">MAX</li>
                     </ol>
                 </li>
             </ul>
             <ul class="row-2">
                 <li><img src="../../assets/images/price_icon.jpg" alt="">
-                    <h2>0.0001 <em>EOS</em></h2>
+                    <h2>{{counter.price}} <em>EOS</em></h2>
                     <p>{{$t('Price per Ticket')}}</p></li>
                 <li><img src="../../assets/images/total_icon.jpg" alt="">
-                    <h2>1.0000 <em> EOS</em></h2>
+                    <h2>{{counter.count}} <em> EOS</em></h2>
                     <p>{{$t('Total')}}</p></li>
             </ul><!----><!----></div>
     </div>
@@ -25,7 +27,24 @@
 
 <script>
     export default {
-        name: "GameBet"
+        name: "GameBet",
+        data() {
+            return {
+                bet: {
+                    money: '',
+                    max: 999
+                },
+                counter: {
+                    price: 0.22,
+                    count: 22,
+                }
+            }
+        },
+        methods: {
+            fix(r) {
+                this.bet.money *= r;
+            }
+        }
     }
 </script>
 

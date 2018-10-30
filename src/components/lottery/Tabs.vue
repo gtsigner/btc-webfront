@@ -22,8 +22,8 @@
         data() {
             return {
                 current: {
-                    i: 1,
-                    comp: '',
+                    i: 0,
+                    comp: 'tab-bets',
                     search: {}
                 },
                 tabs: [

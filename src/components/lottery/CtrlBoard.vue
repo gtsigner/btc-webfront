@@ -6,11 +6,12 @@
                 <ol>
                     <li class="tokens-icon first" :class="game.icon">
                         <i></i>
-                        <input type="number" spellcheck="false" class="no-spin"><span>{{game.title}}</span>
+                        <input type="number" v-model="bet.money" spellcheck="false"
+                               class="no-spin"><span>{{game.title}}</span>
                     </li>
-                    <li class="btns">1/2</li>
-                    <li class="btns add-line">2X</li>
-                    <li class="btns">MAX</li>
+                    <li class="btns" @click="fix(0.5)">1/2</li>
+                    <li class="btns add-line" @click="fix(2)">2X</li>
+                    <li class="btns" @click="bet.money=bet.max">MAX</li>
                 </ol>
             </li>
             <li>
@@ -26,15 +27,15 @@
         <ul class="row-2">
             <li>
                 <div class="title">{{$t('ROLL UNDER TO WIN')}}</div>
-                <div class="content min50">50 <i></i></div>
+                <div class="content min50">{{board.scroll}} <i></i></div>
             </li>
             <li class="add-line">
                 <div class="title">{{$t('PAYOUT')}}</div>
-                <div class="content">2.01x</div>
+                <div class="content">{{100-(board.scroll)}}</div>
             </li>
             <li>
                 <div class="title">{{$t('WIN CHANCE')}}</div>
-                <div class="content">49%</div>
+                <div class="content">{{board.scroll-1}}%</div>
             </li>
         </ul>
 
@@ -42,8 +43,8 @@
         <!--progress-->
         <div class="prog-bar">
             <div class="my-progress">
-                <div class="leve1">
-                    <div class="leve2" style="width: 50%;"><i></i><em>50</em></div><!----></div>
+                <el-slider tooltip-class="godtoy" v-model="board.scroll" :step="1" :max="board.max"
+                           :min="board.min"></el-slider>
                 <ul class="scale">
                     <li><span style="padding-left: 1px;">1</span></li>
                     <li><span style="position: relative; left: -7px;">25</span></li>
@@ -78,7 +79,24 @@
         },
         data() {
             return {
-                auto: false
+                auto: false,
+                bet: {
+                    money: '',
+                    max: 10240000,
+                },
+                board: {
+                    win: 52,
+                    pl: '2.22x',
+                    rate: '49%',
+                    scroll: 49,
+                    max: 96,
+                    min: 2,
+                },
+            }
+        },
+        methods: {
+            fix(r) {
+                this.bet.money *= r;
             }
         }
     }

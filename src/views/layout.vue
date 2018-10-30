@@ -10,11 +10,10 @@
                 <li class="lottery">
                     <router-link exact-active-class="active" to="/lottery">Lottery</router-link>
                 </li>
-                <li class="bonuses">
+                <li class="bonuses" hidden>
                     <router-link exact-active-class="active" to="/bonuses">Lucky Draw</router-link>
                 </li>
-
-                <li class="exchange">
+                <li class="exchange" hidden>
                     <router-link exact-active-class="active" to="/exchange">Exchange</router-link>
                 </li>
             </ul>

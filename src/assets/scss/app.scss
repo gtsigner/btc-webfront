@@ -1,6 +1,38 @@
 @import "reset.scss";
 @import "fullcover";
 
+.el-slider__bar {
+    height: 14px;
+    background-color: #29f294;
+    box-shadow: 0 0 7px #29f294;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+    position: absolute;
+}
+
+.el-slider__runway {
+    height: 14px;
+    border-radius: 7px;
+    background-color: #ee0060;
+}
+
+.el-slider__button-wrapper {
+    top: -11px;
+}
+
+.el-slider__button {
+    display: block;
+    height: 24px;
+    width: 24px;
+    background-color: #f4f4f4;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 0 5px #fff;
+    box-shadow: 0 0 5px #fff;
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
+    z-index: 2;
+}
+
 .share-link {
     display: flex;
     a {

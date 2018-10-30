@@ -36,7 +36,7 @@
         },
         methods: {
             load() {
-                this.len = Math.floor(Math.random() * 5);
+                this.len = Math.floor(Math.random() * 5) + 1;
             }
         },
         watch: {
@@ -44,7 +44,7 @@
                 this.load();
             }
         },
-        created() {
+        mounted() {
             this.load();
         }
     }
