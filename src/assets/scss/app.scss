@@ -1,5 +1,6 @@
 @import "reset.scss";
 @import "fullcover";
+
 .share-link {
     display: flex;
     a {
@@ -28,5 +29,11 @@
     }
     a:nth-of-type(2) {
         font-size: 1.8em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .only-pc {
+        display: none !important;
     }
 }
