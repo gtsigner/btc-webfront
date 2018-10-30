@@ -41,9 +41,9 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li><!---->
-                            <li><a href="#">{{$t('Referral')}}</a></li>
-                            <li><a href="#">{{$t('How to Play')}}</a></li><!---->
+                            </li>
+                            <li @click="modals.invite=true"><a href="#">{{$t('Referral')}}</a></li>
+                            <li @click="modals.help=true"><a href="#">{{$t('How to Play')}}</a></li>
                             <li><a href="#">{{$t('Payout')}}</a></li>
                             <li><a href="/vip" class="">{{$t('VIP')}}</a></li>
                             <li class="user-dashboard">
@@ -58,14 +58,25 @@
                 </div>
             </div>
         </div>
+        <invite-comp @close="modals.invite=false" v-if="modals.invite"></invite-comp>
+        <play-help @close="modals.help=false" v-if="modals.help"></play-help>
     </div>
 </template>
 
 <script>
+    import InviteComp from "../cover/InviteComp";
+    import PlayHelp from "../cover/PlayHelp";
+
     export default {
         name: "NavBar",
+        components: {PlayHelp, InviteComp},
         data() {
-            return {}
+            return {
+                modals: {
+                    invite: false,
+                    help: false
+                }
+            }
         },
         computed: {
             langs() {

@@ -57,7 +57,7 @@
         <!--auto ctrl-->
         <div class="auto-ctrl">
             <span>{{$t('Auto Bet')}}</span>
-            <el-switch></el-switch>
+            <el-switch v-model="auto" size="large"></el-switch>
             <span style="color: rgb(255, 255, 255); font-weight: 600;">{{$t('Off')}}</span>
             <i class="el-icon-question"><em>{{$t('bet tips')}}</em></i></div>
         <div class="btn-bar">
@@ -74,6 +74,11 @@
         computed: {
             game() {
                 return this.$store.state.game.current;
+            }
+        },
+        data() {
+            return {
+                auto: false
             }
         }
     }
@@ -621,6 +626,7 @@
                 padding: 0 6px;
                 cursor: pointer;
             }
+            //help
             > i:hover em {
                 display: block;
             }
@@ -630,11 +636,14 @@
                 top: 0;
                 -webkit-transform: translate(0, -115%);
                 transform: translate(0, -115%);
-                right: 15px;
+                left: 0;
+                padding: 10px;
                 width: 180px;
                 background-color: #444;
+                border-radius: 5px;
                 color: #ccc;
                 font-size: 15px;
+                z-index: 2000;
             }
             > i:hover {
                 color: #aaaaaa;

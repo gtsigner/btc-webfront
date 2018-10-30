@@ -31,31 +31,11 @@
                     <span>{{$t('Ticket Number')}}</span>
                     <span>{{$t('Owned Ratio')}}</span>
                 </li>
-                <li class="items">
-                    <span class="no1"><i>1</i></span>
-                    <span>liketerryfox</span>
+                <li class="items" v-for="i in 10">
+                    <span :class="'no'+i"><i>{{i}}</i></span>
+                    <span>fdddd{{i}}</span>
                     <span><em>591.5828</em><em style="font-size: 12px; padding-left: 4px;">EOS</em></span>
                     <span>3,879,548</span><span>45.81%</span>
-                </li>
-                <li class="items">
-                    <span class="no2"><i>2</i></span><span>liketerryfox</span><span><em
-                    style="font-weight: 600;">295.7914</em><em
-                    style="font-size: 12px; padding-left: 4px;">EOS</em></span><span>3,598,458</span><span>45.81%</span>
-                </li>
-                <li class="items">
-                    <span class="no3"><i>3</i></span><span>liketerryfox</span><span><em
-                    style="font-weight: 600;">147.8957</em><em
-                    style="font-size: 12px; padding-left: 4px;">EOS</em></span><span>5,962,806</span><span>45.81%</span>
-                </li>
-                <li class="items">
-                    <span class="no4"><i>4</i></span><span>monkeymagic5</span><span><em
-                    style="font-weight: 600;">73.9478</em><em
-                    style="font-size: 12px; padding-left: 4px;">EOS</em></span><span>9,347,444</span><span>27.49%</span>
-                </li>
-                <li class="items">
-                    <span class="no5"><i>5</i></span><span>liketerryfox</span><span><em
-                    style="font-weight: 600;">36.9739</em><em
-                    style="font-size: 12px; padding-left: 4px;">EOS</em></span><span>3,946,679</span><span>45.81%</span>
                 </li>
             </ul>
         </div>
@@ -63,8 +43,27 @@
 </template>
 
 <script>
+    import {http} from "../../services/api";
+
     export default {
-        name: "GameLog"
+        name: "GameLog",
+        data() {
+            return {
+                data: [],
+                loading: false
+            }
+        },
+        methods: {
+            async load() {
+                this.loading = true;
+
+                const res = await http.get('/');
+                this.loading = false;
+            }
+        },
+        created() {
+            this.load();
+        }
     }
 </script>
 

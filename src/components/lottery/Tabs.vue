@@ -7,62 +7,71 @@
                 {{$t(tab.title)}}
             </li>
         </ul>
-        <table class="table table-striped text-center">
-            <thead>
-            <tr>
-                <th style="width: 14%;">{{$t('Time')}}</th>
-                <th style="width: 8%;">{{$t('Tab Bettor')}}</th>
-                <th class="only-pc" style="width: 12%;">{{$t('Roll Under')}}</th>
-                <th class="only-pc" style="width: 12%;">{{$t('Bet')}}</th>
-                <th class="only-pc" style="width: 8%;">{{$t('Roll')}}</th>
-                <th style="width: 15%;">{{$t('Tab Payout')}}</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="win" v-for="i in 5">
-                <td>01:17:12<i></i><em></em></td>
-                <td>bettobigmoon<em></em></td>
-                <td class="only-pc">50<em></em></td>
-                <td class="only-pc">1.0000 EOS<em></em></td>
-                <td class="only-pc">7<em></em></td>
-                <td>2.0102 EOS<em></em></td>
-            </tr>
-            <tr v-for="i in 20">
-                <td>01:17:12<i></i><em></em></td>
-                <td>bettobigmoon<em></em></td>
-                <td class="only-pc">50<em></em></td>
-                <td class="only-pc">1.0000 EOS<em></em></td>
-                <td class="only-pc">7<em></em></td>
-                <td>2.0102 EOS<em></em></td>
-            </tr>
-            </tbody>
-        </table>
+        <component :is="current.comp" :search="current.search"></component>
     </div>
 </template>
 
 <script>
+    import Tabs from '../tabs/index';
+
     export default {
         name: "Tabs",
+        components: {
+            ...Tabs
+        },
         data() {
             return {
                 current: {
-                    i: 1
+                    i: 1,
+                    comp: '',
+                    search: {}
                 },
                 tabs: [
-                    {i: 0, title: 'All Bets',},
-                    {i: 1, title: 'My Bets'},
-                    {i: 2, title: 'Top Wager'},
-                    {i: 3, title: 'Top Payout'},
-                    {i: 4, title: 'Net Profit'},
-                    {i: 5, title: 'Total Wager'},
-                    {i: 6, title: 'Total Payout'},
-                    {i: 7, title: 'Play Count'}
+                    //mock数据
+                    {i: 0, title: 'All Bets', comp: 'tab-bets', search: {}},
+                    {i: 1, title: 'My Bets', comp: 'tab-bets', search: {t: 0}},
+                    {
+                        i: 2, title: 'Top Wager', comp: 'tab-top', search: {
+                            t: 1,
+                            title: 'Top Wager'
+                        }
+                    },
+                    {
+                        i: 3, title: 'Top Payout', comp: 'tab-top', search: {
+                            t: 2,
+                            title: 'Top Payout'
+                        }
+                    },
+                    {
+                        i: 4, title: 'Net Profit', comp: 'tab-top', search: {
+                            t: 3,
+                            title: 'Net Profit'
+                        }
+                    },
+                    {
+                        i: 5, title: 'Total Wager', comp: 'tab-top', search: {
+                            t: 4,
+                            title: 'Total Wager'
+                        }
+                    },
+                    {
+                        i: 6, title: 'Total Payout', comp: 'tab-top', search: {
+                            t: 5,
+                            title: 'Total Payout'
+                        }
+                    },
+                    {
+                        i: 7, title: 'Play Count', comp: 'tab-top', search: {
+                            t: 6,
+                            title: 'Play Count'
+                        }
+                    }
                 ],
             }
         },
         methods: {
             async check(tab) {
-                this.current.i = tab.i;
+                this.current = tab;
             }
         }
     }
@@ -91,47 +100,6 @@
                     color: #fff;
                     font-weight: 600;
                     border-bottom: 2px solid #fff;
-                }
-            }
-        }
-    }
-
-    .table-list {
-        .table {
-            background: transparent;
-            padding-bottom: 20px;
-            tr {
-                border: none !important;
-                background-color: transparent;
-                padding: 0;
-            }
-            td {
-                text-align: center;
-                color: #fff;
-                max-width: 265px;
-                padding: 15px 4px;
-                font-size: 15px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                border: none !important;
-            }
-            th {
-                background-color: #1d233e;
-                color: #989a99;
-                border: none !important;
-                height: 45px;
-                text-align: center !important;
-                line-height: 45px;
-            }
-            tbody {
-                tr {
-                    background: #4c2d2e;
-                    border-top: 1px solid red !important;;
-                }
-                tr.win {
-                    border-top: 1px solid green !important;
-                    background: #334e47;
                 }
             }
         }

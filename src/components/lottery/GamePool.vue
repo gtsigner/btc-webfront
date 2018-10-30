@@ -27,11 +27,29 @@
 </template>
 
 <script>
+    import {http} from "../../services/api";
+
     export default {
         name: "GamePool",
         computed: {
             game() {
                 return this.$store.state.game.current;
+            }
+        },
+        data() {
+            return {
+                data: [],
+                loading: false
+            }
+        },
+        methods: {
+            async load() {
+                this.loading = true;
+
+                const res = await http.get('/');
+
+
+                this.loading = false;
             }
         }
     }

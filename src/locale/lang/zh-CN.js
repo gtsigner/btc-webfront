@@ -29,6 +29,15 @@ export default {
     'Off': '关闭',
     'Auto Bet': '自动投注',
 
+
+    //modals
+
+    'Invite friends for Rewards': '立即邀请好友领取奖励',
+    'Invite Tips': '万勿错过！邀请好友即可获得他们 {rate}% 的投注额！所有代币适用！请于「红利 -> 我的余额」领取奖励',
+
+    'How To Play': '玩法介绍',
+    '': '',
+
     //tabs
     'All Bets': '所有投注',
     'My Bets': '我的投注',

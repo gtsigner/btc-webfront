@@ -29,6 +29,11 @@ export default {
     'Off': 'Off',
     'Auto Bet': 'Auto Bet',
 
+    //modals
+    'Invite friends for Rewards': 'Invite friends for Rewards',
+    'Invite Tips': 'Refer a friend and earm 0.2% of their bets! Referral bonus applies to all tokens.',
+    'How To Play': 'How To Play',
+
 
     //tabs
     'All Bets': 'All Bets',

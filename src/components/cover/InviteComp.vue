@@ -1,39 +1,41 @@
 <template>
     <div class="full-screen-cover"><!----><!----><!----><!----><!----><!---->
-        <section style="margin-top: 80px; border-top: 1px solid rgb(69, 77, 84); padding-top: 0px; min-height: 290px;">
-            <section class="invite-comp"><h2>Invite friends for Rewards!</h2>
+        <section class="modal-container">
+            <section class="invite-comp">
+                <h2>{{$t('Invite friends for Rewards')}}!</h2>
                 <div class="last">
                     <div class="input-box"><input type="text" spellcheck="false">
                     </div>
                     <div>
-                        <button type="button"
-                                class="el-button copy-btn el-button--primary el-button--small"
-                                data-clipboard-text="https://betdice.one"
-                                style="font-size: 0.8em; padding: 10px 14px; display: inline-block; width: 100%; margin: 0px;">
-                            <!----><!----><span>COPY</span></button>
+                        <el-button type="primary"><span>COPY</span></el-button>
                     </div>
                 </div>
-                <p>Refer a friend and earm 0.2% of their bets! Referral bonus applies to all
-                    tokens.<br><br>Please collect your balance in "Payout" -&gt; "My Balance".</p></section>
-            <i class="el-icon-close closed-icon"></i></section><!----><!----><!---->
+                <p style="margin-top: 20px;">{{$t('Invite Tips')}}</p>
+            </section>
+            <i @click="close" class="el-icon-close closed-icon"></i>
+        </section>
     </div>
 </template>
 
 <script>
     export default {
-        name: "InviteComp"
+        name: "InviteComp",
+        props: {
+            show: Boolean
+        },
+        methods: {
+            close() {
+                this.$emit('close');
+            }
+        },
+        created() {
+
+        }
     }
 </script>
 
 <style scoped lang="scss">
-
-    section {
-        max-width: 560px;
-        width: 100%;
-        min-height: 120px;
-        background-color: #444d54;
-        border-radius: 10px;
-        color: #fff;
+    .modal-container {
         position: relative;
     }
 
@@ -52,17 +54,15 @@
     }
 
     .invite-comp {
-        max-width: 768px;
-        min-height: 250px;
-        margin-top: 20px;
-        padding-top: 20px;
+        max-width: 400px;
+        min-height: 200px;
+        padding: 40px 15px;
     }
 
     .invite-comp h2 {
         text-align: center;
         margin-bottom: 22px;
         font-size: 26px;
-        padding-top: 10px;
     }
 
     .invite-comp p {
@@ -84,7 +84,6 @@
     }
 
     .invite-comp div.last .input-box {
-        background-color: #3d4245;
         border-radius: 4px;
         background-color: #3b435c;
         margin-right: 2px;
@@ -185,89 +184,4 @@
         }
     }
 
-    .full-screen-cover {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(35, 35, 35, .9);
-        z-index: 9;
-        top: 0;
-        left: 0;
-    }
-
-    .full-screen-cover section {
-        max-width: 560px;
-        width: 100%;
-        min-height: 320px;
-        margin: 170px auto;
-        background-color: #444d54;
-        border-radius: 10px;
-        color: #fff;
-        padding: 0 30px 32px;
-        position: relative;
-    }
-
-    .full-screen-cover section h5 {
-        padding: 32px 0 22px;
-        text-align: center;
-        font-size: 22px;
-        font-weight: 600;
-    }
-
-    .full-screen-cover section p {
-        text-align: center;
-    }
-
-    .full-screen-cover section ol {
-        padding-left: 12px;
-    }
-
-    .full-screen-cover section ol li {
-        font-size: 15px;
-    }
-
-    .full-screen-cover section ol a {
-        color: #4d9efc;
-        font-weight: 700;
-        font-size: 1.1em;
-    }
-
-    .full-screen-cover section div.btn-box {
-        text-align: center;
-        padding-top: 50px;
-    }
-
-    .full-screen-cover section i.closed-icon {
-        position: absolute;
-        top: 14px;
-        right: 16px;
-        font-size: 24px;
-        color: #929493;
-        cursor: pointer;
-        font-weight: 700;
-    }
-
-    .full-screen-cover section i.closed-icon:hover {
-        color: #ccc;
-    }
-
-    .full-screen-cover section li {
-        line-height: 1.6;
-    }
-
-    @media screen and (max-width: 768px) {
-        .full-screen-cover section {
-            padding: 0 16px 0px;
-        }
-        .full-screen-cover section ol {
-            padding-left: 0 !important;
-        }
-    }
-
-    @media screen and (max-width: 575px) {
-        .full-screen-cover {
-            padding-left: 13px;
-            padding-right: 13px;
-        }
-    }
 </style>
