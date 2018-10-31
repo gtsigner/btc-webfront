@@ -88,6 +88,7 @@
         }
     }
 </script>
+
 <style scoped lang="scss">
 
     //game nav

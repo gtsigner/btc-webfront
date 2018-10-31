@@ -39,7 +39,8 @@
         data() {
             return {
                 data: [],
-                loading: false
+                loading: false,
+                date: {}
             }
         },
         methods: {

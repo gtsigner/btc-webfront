@@ -6,7 +6,7 @@
                     <h2>{{$t('Round Count Lottery',{count:200})}}</h2>
                     <p>{{$t('Winner')}}</p>
                     <div class="name">
-                        liketerryfox
+                        {{winer.user}}
                         <button type="button"
                                 class="el-button btn-left el-button--info el-button--mini is-circle"
                                 style="background: transparent;">
@@ -18,10 +18,10 @@
                             class="el-icon-arrow-right"></i><!----></button>
                     </div>
                     <div class="money">{{$t('User')}}：<em
-                        style="font-weight: 800; font-size: 1.2em;">591.5828</em>
-                        EOS
+                        style="font-weight: 800; font-size: 1.2em;">{{winer.id}}</em>
+                        {{game.title}}
                     </div>
-                    <p class="total">{{$t('Total Count Tickets')}}：10,915,019</p></li>
+                    <p class="total">{{$t('Total Count Tickets')}}：{{betCount}}</p></li>
             </ul>
             <ul class="table-list data">
                 <li class="t-header">
@@ -31,11 +31,15 @@
                     <span>{{$t('Ticket Number')}}</span>
                     <span>{{$t('Owned Ratio')}}</span>
                 </li>
-                <li class="items" v-for="i in 10">
-                    <span :class="'no'+i"><i>{{i}}</i></span>
-                    <span>fdddd{{i}}</span>
-                    <span><em>591.5828</em><em style="font-size: 12px; padding-left: 4px;">EOS</em></span>
-                    <span>3,879,548</span><span>45.81%</span>
+                <li class="items" v-for="(bet,i) in bets">
+                    <span :class="'no'+bet.rank"><i>{{bet.rank}}</i></span>
+                    <span>{{bet.user}}</span>
+                    <span>
+                        <em>{{bet.bonus}}</em>
+                        <em style="font-size: 12px; padding-left: 4px;">{{game.title}}</em>
+                    </span>
+                    <span>{{bet.codes}}</span>
+                    <span>{{bet.rate}}</span>
                 </li>
             </ul>
         </div>
@@ -50,14 +54,48 @@
         data() {
             return {
                 data: [],
-                loading: false
+                loading: false,
+                bets: [],
+                winer: {
+                    user: 'godtoy',
+                    id: '123123.123',
+                },
+                betCount: 100232,
+            }
+        },
+        computed: {
+            game() {
+                return this.$store.state.game.current;
             }
         },
         methods: {
             async load() {
                 this.loading = true;
-
                 const res = await http.get('/');
+                const list = [
+                    {
+                        rank: 1,
+                        user: 'zhaojunlike',
+                        bonus: '12312.2131',
+                        codes: '1231,123',
+                        rate: "45.82%"
+                    },
+                    {
+                        rank: 2,
+                        bonus: '12312.2131',
+                        codes: '1231,123',
+                        user: 'godtoy',
+                        rate: "45.87%"
+                    },
+                    {
+                        rank: 3,
+                        bonus: '12312.2131',
+                        codes: '1231,123',
+                        user: 'godtoy',
+                        rate: "45.87%"
+                    },
+                ];
+                this.bets = [...list];
                 this.loading = false;
             }
         },

@@ -1,7 +1,7 @@
 <template>
     <div class="ranking-container">
         <div class="ranking-comp">
-            <h2><i class="fa fa-bar-chart-o"></i> {{$t("Today Leader Board")}} (03:16:29)</h2>
+            <h2><i class="fa fa-bar-chart-o"></i> {{$t("Today Leader Board")}} ({{date.time}})</h2>
             <ul class="table-header">
                 <li class="t-header">
                     <span class="rank-col">{{$t('Rank')}}</span>
@@ -11,22 +11,23 @@
                 </li>
             </ul>
             <ul :id="game.icon" class="table-list data">
-                <li class="items" v-for="i in 20" :class="'top'+i">
-                    <span>{{i}}</span>
-                    <span>bettobigmoon</span>
+                <li class="items" v-for="(it,i) in data" :class="'top'+it.rank">
+                    <span>{{it.rank}}</span>
+                    <span>{{it.bettor}}</span>
                     <span>
-                        <em style="font-weight: 600;">165,712</em>
-                        <em class="game-type">EOS</em>
+                        <em style="font-weight: 600;">{{it.total_wager}}</em>
+                        <em class="game-type">{{game.title}}</em>
                     </span>
                     <span>
-                        <em style="font-weight: 600; color: rgb(41, 224, 141);">2500</em>
-                        <em class="game-type">EOS</em>
+                        <em style="font-weight: 600; color: rgb(41, 224, 141);">{{it.prize}}</em>
+                        <em class="game-type">{{game.title}}</em>
                     </span>
                 </li>
             </ul>
             <ul class="table-list user ">
-                <li class="items user"><span>-</span><span>-</span><span><em style="font-weight: 600;">0.0000</em><em
-                    style="font-size: 12px; padding-left: 4px;">EOS</em></span><span></span></li>
+                <li class="items user"><span>-</span><span>-</span><span>
+                    <em style="font-weight: 600;">0.0000</em>
+                    <em style="font-size: 12px; padding-left: 4px;">{{game.title}}</em></span><span></span></li>
 
             </ul>
             <div class="info-font tips">
@@ -36,7 +37,7 @@
                 <a target="_blank"
                    href="https://medium.com/@betdice/betdice-event-week-is-being-extended-for-one-final-week-e255f1a76ed">
                     <div class="msg">
-                        <p class="neon1">4000</p>
+                        <p class="neon1">{{resend.count}}</p>
                         <p>{{$t('Giveaway',{title:game.title})}}</p></div>
                 </a></div>
             <div class="btn-ctrl">
@@ -55,12 +56,43 @@
     export default {
         name: "Ranking",
         data() {
-            return {}
+            return {
+                data: [],
+                resend: {
+                    count: 4000
+                },
+                date: {
+                    time: '03:16:29',
+                    date: ''
+                }
+            }
+        },
+        methods: {
+            async getData() {
+                const list = [
+                    {
+                        rank: 1,
+                        bettor: 'bettobigmoon',
+                        total_wager: '123',
+                        prize: '123'
+                    },
+                    {
+                        rank: 2,
+                        bettor: 'godtoy',
+                        total_wager: '22',
+                        prize: '123'
+                    },
+                ];
+                this.data = [...list];
+            }
         },
         computed: {
             game() {
                 return this.$store.state.game.current;
             },
+        },
+        created() {
+            this.getData();
         }
     }
 </script>
