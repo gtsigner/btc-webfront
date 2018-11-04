@@ -5,7 +5,10 @@
                 <li>
                     <ol>
                         <li class="tokens-icon first"><i></i>
-                            <input v-model="bet.money" type="text" spellcheck="false">
+                            <input
+                                v-model="bet.money"
+                                type="text"
+                                spellcheck="false">
                             <span>{{$t('Ticket')}}</span>
                         </li>
                         <li class="btns" @click="fix(0.5)">1/2</li>
@@ -16,10 +19,10 @@
             </ul>
             <ul class="row-2">
                 <li><img src="../../assets/images/price_icon.jpg" alt="">
-                    <h2>{{counter.price}} <em>EOS</em></h2>
+                    <h2>{{counter.price}} <em>{{game.title}}</em></h2>
                     <p>{{$t('Price per Ticket')}}</p></li>
                 <li><img src="../../assets/images/total_icon.jpg" alt="">
-                    <h2>{{counter.count}} <em> EOS</em></h2>
+                    <h2>{{counter.count}} <em> {{game.title}}</em></h2>
                     <p>{{$t('Total')}}</p></li>
             </ul><!----><!----></div>
     </div>
@@ -32,15 +35,36 @@
             return {
                 bet: {
                     money: '',
-                    max: 999
+                    max: 10240000,
+                    min: 100
                 },
                 counter: {
                     price: 0.22,
-                    count: 22,
+                    count: 2233,
                 }
             }
         },
+        watch: {
+            //fixbug: 1
+            'bet.money'(n, o) {
+                if (n <= this.bet.min) {
+                    this.bet.money = this.bet.min;
+                }
+                if (n > this.bet.max) {
+                    this.bet.money = this.bet.max;
+                }
+                return n;
+            }
+        },
+        computed: {
+            game() {
+                return this.$store.state.game.current;
+            }
+        },
         methods: {
+            submit() {
+
+            },
             fix(r) {
                 this.bet.money *= r;
             }

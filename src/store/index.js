@@ -8,7 +8,9 @@ import game from "./modules/game";
 
 export default new Vuex.Store({
     state: {
-        user: {},
+        user: {
+            username: 'godtoy'
+        },
         isLogin: false,
         accessToken: null,
         lang: {},//当前语言

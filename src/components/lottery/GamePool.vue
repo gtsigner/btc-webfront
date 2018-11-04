@@ -3,21 +3,12 @@
         <div class="ticket">
             <div class="t-left">
                 <p>{{$t('Round Lottery Pot',{sum:24})}}</p>
-                <h2>366.6719<em>{{game.title}}</em></h2>
+                <h2>{{bonus}}<em>{{game.title}}</em></h2>
             </div>
             <div class="t-right" :class="game.icon"></div>
         </div>
         <div class="lottery-clock"><h2>{{$t('Next Drawing')}}</h2>
-            <ul>
-                <li>0</li>
-                <li>1</li>
-                <li class="point">:</li>
-                <li>5</li>
-                <li>5</li>
-                <li class="point">:</li>
-                <li>1</li>
-                <li>8</li>
-            </ul>
+            <time-down ref="timer" @timeout="timeout" :end="timeEnd"></time-down>
         </div>
         <div class="lottery-info">
             <h3></h3>
@@ -28,9 +19,12 @@
 
 <script>
     import {http} from "../../services/api";
+    import TimeDown from "../common/TimeDown";
+    import * as dayjs from 'dayjs';
 
     export default {
         name: "GamePool",
+        components: {TimeDown},
         computed: {
             game() {
                 return this.$store.state.game.current;
@@ -38,12 +32,23 @@
         },
         data() {
             return {
+                bonus: 3266.6719,
                 data: [],
                 loading: false,
-                date: {}
+                date: {},
+                //开奖时间
+                timeEnd: ''
             }
         },
         methods: {
+            //倒计时结束
+            async timeout() {
+                //alert("开奖了哈");
+                this.setEndTime();
+            },
+            async setEndTime() {
+                this.timeEnd = dayjs(dayjs().unix() * 1000 + 10000 * 1000).format('YYYY-MM-DD HH:mm:ss')
+            },
             async load() {
                 this.loading = true;
 
@@ -52,6 +57,9 @@
 
                 this.loading = false;
             }
+        },
+        created() {
+            this.setEndTime();
         }
     }
 </script>
@@ -148,31 +156,6 @@
                 font-size: 28px;
                 text-align: center;
                 margin-bottom: 16px;
-            }
-            > ul {
-                display: flex;
-                max-width: 648px;
-                margin: 0 auto 35px;
-                li {
-                    -webkit-box-flex: 1;
-                    -ms-flex: 1;
-                    flex: 1;
-                    font-size: 70px;
-                    border: 2px solid #f6c522;
-                    border-radius: 9px;
-                    color: #edcd5c;
-                    margin: 4px;
-                    text-align: center;
-                    text-shadow: 0 0 1px #f4cc4b;
-                    font-weight: 600;
-                    font-family: 'Microsoft YaHei', 'Arial', 'Verdana';
-                    &.point {
-                        flex: 0 0 5%;
-                        font-weight: 400;
-                        color: #7d80a1;
-                        border: none;
-                    }
-                }
             }
         }
     }

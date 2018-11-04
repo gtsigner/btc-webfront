@@ -18,7 +18,7 @@
                 <div class="title two tokens-icon">{{$t('PAYOUT ON WIN')}}</div>
                 <ol>
                     <li id="win-currency" class="tokens-icon" :class="game.icon">
-                        <span>201.0204</span>
+                        <span>{{bet.money*(100-(board.scroll))}}</span>
                         <em class="game-title">{{game.title}}</em>
                     </li>
                 </ol>
@@ -62,8 +62,11 @@
             <span style="color: rgb(255, 255, 255); font-weight: 600;">{{$t('Off')}}</span>
             <i class="el-icon-question"><em>{{$t('bet tips')}}</em></i></div>
         <div class="btn-bar">
-            <div>
-                <button class="login">{{$t('Login')}}</button>
+            <div v-if="!isLogin">
+                <button class="login" @click="login">{{$t('Login')}}</button>
+            </div>
+            <div v-if="isLogin">
+                <button class="login" @click="submit">{{$t('ROLL')}}</button>
             </div>
         </div>
     </div>
@@ -75,6 +78,12 @@
         computed: {
             game() {
                 return this.$store.state.game.current;
+            },
+            user() {
+                return this.$store.state.user;
+            },
+            isLogin() {
+                return this.$store.state.isLogin;
             }
         },
         data() {
@@ -95,6 +104,12 @@
             }
         },
         methods: {
+            async submit() {
+                alert("请对接接口");
+            },
+            login() {
+                this.$store.dispatch('login');
+            },
             fix(r) {
                 this.bet.money *= r;
             }

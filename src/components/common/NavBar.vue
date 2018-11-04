@@ -47,11 +47,29 @@
                             <li><a href="#">{{$t('Payout')}}</a></li>
                             <li><a href="/vip" class="">{{$t('VIP')}}</a></li>
                             <li class="user-dashboard">
-                                <a href="#" class="action-box">
-                                    <el-button type="primary" size="mini">
+                                <a href="#" class="action-box" v-if="!isLogin">
+                                    <el-button
+                                        @click="login"
+                                        type="primary" size="mini">
                                         <span><i class="fa fa-user"></i> {{$t('Login')}}</span>
                                     </el-button>
                                 </a>
+                            </li>
+                            <li class="dropdown" v-if="isLogin">
+                                <a href="javascript:void(0);"
+                                   data-toggle="dropdown"
+                                   role="button"
+                                   aria-haspopup="true"
+                                   aria-expanded="false"
+                                   class="dropdown-toggle">
+                                    <span>{{user.username}}</span>
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu lang-menus">
+                                    <li>
+                                        <a @click="logout">注销登录</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
@@ -84,12 +102,24 @@
             },
             lang() {
                 return this.$store.state.lang;
+            },
+            user() {
+                return this.$store.state.user;
+            },
+            isLogin() {
+                return this.$store.state.isLogin;
             }
         },
         methods: {
             chooseLang(locale) {
                 this.$i18n.locale = locale;
                 this.$store.dispatch('setLang', locale);
+            },
+            login() {
+                this.$store.dispatch('login');
+            },
+            logout() {
+                this.$store.dispatch('logout');
             }
         },
         created() {

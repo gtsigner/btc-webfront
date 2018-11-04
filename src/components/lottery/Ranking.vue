@@ -26,7 +26,7 @@
             </ul>
             <ul class="table-list user ">
                 <li class="items user"><span>-</span><span>-</span><span>
-                    <em style="font-weight: 600;">0.0000</em>
+                    <em style="font-weight: 600;">{{resend.total}}</em>
                     <em style="font-size: 12px; padding-left: 4px;">{{game.title}}</em></span><span></span></li>
 
             </ul>
@@ -41,10 +41,20 @@
                         <p>{{$t('Giveaway',{title:game.title})}}</p></div>
                 </a></div>
             <div class="btn-ctrl">
-                <el-button style="background: transparent;" type="info" size="mini" circle>
+                <el-button @click="leftGo"
+                           :class="{'disable':!date.leftEnable}"
+                           :disabled="!date.leftEnable"
+                           type="info"
+                           size="mini"
+                           circle>
                     <i class="el-icon-arrow-left"></i>
                 </el-button>
-                <el-button style="background: transparent; cursor: auto; opacity: 0.2;" type="info" size="mini" circle>
+                <el-button @click="rightGo"
+                           :class="{'disable':!date.rightEnable}"
+                           :disabled="!date.rightEnable"
+                           type="info"
+                           size="mini"
+                           circle>
                     <i class="el-icon-arrow-right"></i>
                 </el-button>
             </div>
@@ -53,21 +63,43 @@
 </template>
 
 <script>
+    import * as dayjs from 'dayjs';
+
     export default {
         name: "Ranking",
         data() {
             return {
                 data: [],
                 resend: {
-                    count: 4000
+                    count: 4000,
+                    total: 0.000
                 },
                 date: {
                     time: '03:16:29',
-                    date: ''
-                }
+                    date: '',
+                    leftEnable: true,
+                    rightEnable: true
+                },
             }
         },
         methods: {
+            leftGo() {
+                this.date.leftEnable = false;
+                this.date.rightEnable = true;
+                // this.date = dayjs().format('YYYY-MM-DD');
+                this.getData();
+            },
+            rightGo() {
+                this.date.leftEnable = true;
+                this.date.rightEnable = false;
+                // this.date = dayjs().format('YYYY-MM-DD');//自己做
+                this.data.push({
+                    rank: this.data.length + 1,
+                    bettor: 'godtoy',
+                    total_wager: '22',
+                    prize: '123'
+                });
+            },
             async getData() {
                 const list = [
                     {
@@ -292,7 +324,17 @@
     .ranking-comp .btn-ctrl {
         position: absolute;
         top: 12px;
+
         right: 12px;
+        cursor: pointer;
+        .el-button {
+            background: transparent;
+        }
+        .el-button.disable {
+            background: transparent;
+            cursor: auto;
+            opacity: 0.2;
+        }
     }
 
     .ranking-comp div.flag {

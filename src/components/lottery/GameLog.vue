@@ -8,14 +8,18 @@
                     <div class="name">
                         {{winer.user}}
                         <button type="button"
-                                class="el-button btn-left el-button--info el-button--mini is-circle"
-                                style="background: transparent;">
-                            <i class="el-icon-arrow-left"></i><!---->
+                                @click="leftGo"
+                                :class="{'disable':!date.leftEnable}"
+                                :disabled="!date.leftEnable"
+                                class="el-button btn-left el-button--info el-button--mini is-circle">
+                            <i class="el-icon-arrow-left"></i>
                         </button>
                         <button type="button"
-                                class="el-button btn-right el-button--info el-button--mini is-circle"
-                                style="background: transparent; cursor: auto; opacity: 0.3;"><!----><i
-                            class="el-icon-arrow-right"></i><!----></button>
+                                @click="rightGo"
+                                :class="{'disable':!date.rightEnable}"
+                                :disabled="!date.rightEnable"
+                                class="el-button btn-right el-button--info el-button--mini is-circle">
+                            <i class="el-icon-arrow-right"></i></button>
                     </div>
                     <div class="money">{{$t('User')}}：<em
                         style="font-weight: 800; font-size: 1.2em;">{{winer.id}}</em>
@@ -61,6 +65,10 @@
                     id: '123123.123',
                 },
                 betCount: 100232,
+                date: {
+                    leftEnable: true,
+                    rightEnable: true
+                }
             }
         },
         computed: {
@@ -69,7 +77,25 @@
             }
         },
         methods: {
-            async load() {
+            async leftGo() {
+                this.date.leftEnable = false;
+                this.date.rightEnable = true;
+                // this.date = dayjs().format('YYYY-MM-DD');
+                this.load();
+            },
+            async rightGo() {
+                this.date.leftEnable = true;
+                this.date.rightEnable = false;
+                // this.date = dayjs().format('YYYY-MM-DD');//自己做
+                this.bets.push({
+                    rank: this.bets.length + 1,
+                    user: 'zhaojunlike',
+                    bonus: '1233312.2131',
+                    codes: '23,123',
+                    rate: "45.82%"
+                });
+            },
+            async load(date) {
                 this.loading = true;
                 const res = await http.get('/');
                 const list = [
@@ -111,6 +137,14 @@
         top: 0;
         z-index: 3;
         margin: 0 auto 0;
+        .el-button {
+            background: transparent;
+        }
+        .el-button.disable {
+            background: transparent;
+            cursor: auto;
+            opacity: 0.2;
+        }
 
         > ul.table-header {
             margin: 0;

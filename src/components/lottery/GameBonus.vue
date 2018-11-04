@@ -7,7 +7,7 @@
                 <div class="recent_pool">
                     <div class="rect-pool-bg">
                         <p class="title">{{$t('Current Lottery Pot')}}：</p><span
-                        style="color: white;"> 419.4065 EOS</span>
+                        style="color: white;"> {{total.bonus}} {{game.title}}</span>
                     </div>
                 </div>
                 <div class="ranking">
@@ -28,68 +28,35 @@
                             #1 {{$t('Prize')}}
                         </div>
                     </div>
-                    <div class="ranking_data"><h3>209.7032</h3>
+                    <div class="ranking_data"><h3>{{win.bonus}}</h3>
                         <div><span class="line"></span><span
                             class="chara"><img
                             src="../../assets/images/eos_icon_big_new.png"
                             style="display: inline-block; width: 1.25rem; height: 1.25rem;"><font
-                            style="color: rgb(90, 72, 5); font-weight: 400; font-size: 1.58rem; vertical-align: middle; margin-left: 0.41rem; font-family: Microsoft;">EOS</font></span><span
+                            style="color: rgb(90, 72, 5); font-weight: 400; font-size: 1.58rem; vertical-align: middle; margin-left: 0.41rem; font-family: Microsoft;">{{game.title}}</font></span><span
                             class="line"></span></div>
                     </div>
                 </div>
             </div>
             <div class="center">
                 <div class="row">
-                    <div id="top-2" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 second">
+                    <div v-for="rank in rankings"
+                         :id="'top-'+rank.rank"
+                         class="col-lg-6 col-md-6 col-sm-6 col-xs-12 second">
                         <div class="ranking">
-                            #<em style="font-size: 1.25rem; font-weight: 400;">2</em> {{$t('Prize')}}
+                            #<em style="font-size: 1.25rem; font-weight: 400;">{{rank.rank}}</em> {{$t('Prize')}}
                         </div>
-                        <div class="chara"><h3>104.8516</h3>
-                            <div><span class="line"></span><span
-                                class="chara"><img src="../../assets/images/eos_icon_big_new.png"
-                                                   style="display: inline-block; width: 1.25rem; height: 1.25rem;"><font
-
-                                style="font-weight: 400; font-size: 1.25rem; vertical-align: middle; margin-left: 0.41rem; font-family: Microsoft;">EOS</font></span><span
-                                class="line"></span></div>
-                        </div>
-                    </div>
-                    <div id="top-3" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 second">
-                        <div class="ranking">
-                            #<em style="font-size: 1.25rem; font-weight: 400;">3</em> {{$t('Prize')}}
-                        </div>
-                        <div class="chara"><h3>52.4258</h3>
-                            <div><span class="line"></span><span
-                                class="chara"><img src="../../assets/images/eos_icon_big_new.png"
-                                                   style="display: inline-block; width: 1.25rem; height: 1.25rem;"><font
-
-                                style="font-weight: 400; font-size: 1.25rem; vertical-align: middle; margin-left: 0.41rem; font-family: Microsoft;">EOS</font></span><span
-                                class="line"></span></div>
-                        </div>
-                    </div>
-                    <div id="top-4" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 second">
-                        <div class="ranking">
-                            #<em style="font-size: 1.25rem; font-weight: 400;">4</em> {{$t('Prize')}}
-                        </div>
-                        <div class="chara"><h3>26.2129</h3>
-                            <div><span class="line"></span><span
-                                class="chara"><img src="../../assets/images/eos_icon_big_new.png"
-                                                   style="display: inline-block; width: 1.25rem; height: 1.25rem;"><font
-
-                                style="font-weight: 400; font-size: 1.25rem; vertical-align: middle; margin-left: 0.41rem; font-family: Microsoft;">EOS</font></span><span
-                                class="line"></span></div>
-                        </div>
-                    </div>
-                    <div id="top-5" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 second">
-                        <div class="ranking">
-                            #<em style="font-size: 1.25rem; font-weight: 400;">5</em> {{$t('Prize')}}
-                        </div>
-                        <div class="chara"><h3>13.1064</h3>
-                            <div><span class="line"></span><span
-                                class="chara"><img src="../../assets/images/eos_icon_big_new.png"
-                                                   style="display: inline-block; width: 1.25rem; height: 1.25rem;"><font
-
-                                style="font-weight: 400; font-size: 1.25rem; vertical-align: middle; margin-left: 0.41rem; font-family: Microsoft;">EOS</font></span><span
-                                class="line"></span></div>
+                        <div class="chara"><h3>{{rank.bonus}}</h3>
+                            <div>
+                                <span class="line"></span>
+                                <span class="chara">
+                                <img src="../../assets/images/eos_icon_big_new.png"
+                                     style="display: inline-block; width: 1.25rem; height: 1.25rem;">
+                                <font
+                                    style="font-weight: 400; font-size: 1.25rem; vertical-align: middle; margin-left: 0.41rem; font-family: Microsoft;">{{game.title}}</font>
+                            </span>
+                                <span class="line"></span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -100,7 +67,66 @@
 
 <script>
     export default {
-        name: "GameBonus"
+        name: "GameBonus",
+        data() {
+            return {
+                total: {
+                    bonus: '1233.1231'
+                },
+                win: {
+                    rank: 1,
+                    user: 'zhaojunlike',
+                    bonus: '12312.2131',
+                    codes: '1231,123',
+                    rate: "45.82%"
+                },
+                rankings: []
+            }
+        },
+        computed: {
+            game() {
+                return this.$store.state.game.current;
+            }
+        },
+        methods: {
+            async getData() {
+                const ranks = [
+                    {
+                        rank: 2,
+                        user: 'zhaojunlike',
+                        bonus: '52.2131',
+                        codes: '1231,123',
+                        rate: "45.82%"
+                    },
+                    {
+                        rank: 3,
+                        user: 'zhaojunlike',
+                        bonus: '4.2131',
+                        codes: '1231,123',
+                        rate: "45.82%"
+                    },
+                    {
+                        rank: 4,
+                        user: 'zhaojunlike',
+                        bonus: '3.2131',
+                        codes: '1231,123',
+                        rate: "45.82%"
+                    },
+                    {
+                        rank: 5,
+                        user: 'zhaojunlike',
+                        bonus: '33.2131',
+                        codes: '1231,123',
+                        rate: "45.82%"
+                    },
+                ];
+                this.rankings = [...ranks];
+
+            }
+        },
+        created() {
+            this.getData();
+        }
     }
 </script>
 

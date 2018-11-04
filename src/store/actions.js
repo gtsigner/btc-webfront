@@ -8,7 +8,11 @@ export default {
             commit(types.SET_LOGIN, true);
             commit(types.SET_ACCESS_TOKEN, res.data.token);
         }
+        commit(types.SET_LOGIN, true);//默认登录
         return res;
+    },
+    async logout({commit}) {
+        commit(types.SET_LOGIN, false);
     },
     async profile({commit}) {
         const res = await http.post('user/profile');
