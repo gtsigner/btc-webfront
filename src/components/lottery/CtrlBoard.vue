@@ -69,12 +69,16 @@
                 <button class="login" @click="submit">{{$t('ROLL')}}</button>
             </div>
         </div>
+        <tip v-if="tip.show"></tip>
     </div>
 </template>
 
 <script>
+    import Tip from "../cover/Tip";
+
     export default {
         name: "CtrlBoard",
+        components: {Tip},
         computed: {
             game() {
                 return this.$store.state.game.current;
@@ -101,11 +105,18 @@
                     max: 96,
                     min: 2,
                 },
+                tip: {
+                    show: false
+                }
             }
         },
         methods: {
             async submit() {
-                alert("请对接接口");
+                this.tip.show = true;
+                //alert("请对接接口");
+                setTimeout(() => {
+                    this.tip.show = false;
+                }, 2000);
             },
             login() {
                 this.$store.dispatch('login');
